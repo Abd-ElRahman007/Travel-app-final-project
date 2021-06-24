@@ -2,9 +2,10 @@
 projectData = {};
 
 // Require Express to run server and routes
-const express = require('express')
+const express = require('express');
 // Start up an instance of app
 const app = express();
+const fetch = require('node-fetch');
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
 const bodyParser = require('body-parser');
@@ -15,19 +16,12 @@ app.use(bodyParser.json());
 const cors = require('cors');
 app.use(cors());
 // Initialize the main project folder
-app.use(express.static('website'));
+app.use(express.static('dist'));
 
 
 // Setup Server
 const port = 8000;
-const server = app.listen(port,listing);
-function listing(){
-    console.log(`localhost:${port}`);
+const server = app.listen(port, listening);
+function listening() {
+    console.log(`server is running on localhost:${port}!`);
 }
-const postData = app.post('/addData',(req,res)=>{
-    projectData['date'] = req.body.date;
-    projectData['temp'] = req.body.temperture;
-    projectData['content'] = req.body.content;
-    console.log(projectData);
-});
-const getData = app.get('/allData',(req,res)=>{res.send(projectData);console.log(projectData);});
