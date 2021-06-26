@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+
 module.exports = {
     entry: './src/client/index.js',
     output: {
@@ -23,9 +24,16 @@ module.exports = {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
             }, {
-                test: /\.(png|svg|jpe?g|gif)$/i,
-                loader: 'url-loader',
-            },
+                test: /\.(jpe?g|png|svg|gif)$/i,
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]',
+                    outputPath: 'media',
+                    publicPath: 'media',
+                    emitFile: true,
+                    esModule: false
+                }
+            }
         ]
     },
     plugins: [
