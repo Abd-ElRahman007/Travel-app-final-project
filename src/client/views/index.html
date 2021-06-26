@@ -19,37 +19,41 @@
 
 
 <body>
-  <header class="headline">
+  <header id="headline">
     Travel App
   </header>
-  <main id="app">
-    <div class="holder country">
+  <main id="container">
+    <div class="holder items" id="country">
       <label for="country">Enter Country here</label>
-      <input type="text" id="country" placeholder="enter country here">
+      <input type="text" placeholder="enter country here">
     </div>
-    <div class="holder date">
-      <label for="date">Enter leaving and arrive data</label>
+    <div class="holder items" id="date">
+      <label for="date">Enter leaving and arriving date</label>
       <div class="dateContainer">
-        <label for="date">Leaving date
-          <input type="date" name="leave" id="leave">
+        <label for="leave">Leaving date
+          <input class="dateMargin" type="date" name="leave" id="leave">
         </label>
-        <label for="date">Arriving date
-          <input type="date" name="arrive" id="arrive">
+        <label for="arrive">Arriving date
+          <input class="dateMargin" type="date" name="arrive" id="arrive">
         </label>
       </div>
     </div>
-    <input id="submit" type="submit" name="submit" value="submit" onclick="return Client.handleSubmit(event)"
-      onsubmit="return Client.handleSubmit(event)">
-    <div class="holder entry">
+    <div class="items" id="submit">
+      <input type="submit" name="submit" value="submit" onclick="return Client.handleSubmit(event)"
+        onsubmit="return Client.handleSubmit(event)">
+    </div>
+    <div class="holder items" id="entry" >
       <div class="photoContainer">
         <div id="locationPhoto"><img src="./../media/sample.jpg" alt="The country picture" title="the country"></div>
         <div id="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. In a atque asperiores magnam
           laborum. Ullam omnis earum, hic quod molestias voluptas asperiores eum perferendis odio, id, repellendus
           cupiditate fuga molestiae?</div>
       </div>
-      <div id="daysLeft">20/10/2020</div>
-      <div id="dateArrive">30/10/2020</div>
-      <div id="dateCountDown">220</div>
+      <div id="dateContainer">
+        <div id="daysLeft">20/10/2020</div>
+        <div id="dateArrive">30/10/2020</div>
+        <div id="dateCountDown">220</div>
+      </div>
     </div>
   </main>
 
