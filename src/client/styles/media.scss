@@ -1,0 +1,23 @@
+$min-pixel:320px;
+$mini-med-pixel:325px;
+$max-med-pixel:980px;
+$max-pixel:985px;
+
+
+@mixin small {
+  @media (max-width: #{$min-pixel}) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media (min-width: #{$mini-med-pixel}) and (max-width: #{$max-med-pixel}) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media (max-width: #{$max-pixel}) {
+    @content;
+  }
+}
