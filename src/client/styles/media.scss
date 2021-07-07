@@ -1,8 +1,7 @@
-$min-pixel:320px;
-$mini-med-pixel:325px;
-$max-med-pixel:980px;
-$max-pixel:985px;
-
+$min-pixel: 320px;
+$mini-med-pixel: 325px;
+$max-med-pixel: 980px;
+$max-pixel: 985px;
 
 @mixin small {
   @media (max-width: #{$min-pixel}) {
@@ -17,7 +16,7 @@ $max-pixel:985px;
 }
 
 @mixin large {
-  @media (max-width: #{$max-pixel}) {
+  @media (min-width: #{$max-pixel}) {
     @content;
   }
 }

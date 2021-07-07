@@ -20,39 +20,40 @@
 
 <body>
   <header id="headline">
-    Travel App
+    <h1>
+      Travel App
+    </h1>
   </header>
   <main id="container">
-    <div class="holder items" id="country">
-      <label for="country">Enter Country here</label>
-      <input type="text" placeholder="enter country here">
-    </div>
-    <div class="holder items" id="date">
-      <label for="date">Enter leaving and arriving date</label>
-      <div class="dateContainer">
-        <label for="leave">Leaving date
-          <input class="dateMargin" type="date" name="leave" id="leave">
-        </label>
-        <label for="arrive">Arriving date
-          <input class="dateMargin" type="date" name="arrive" id="arrive">
-        </label>
+    <form id="formContainer">
+      <div class="holder" id="country">
+        <label for="country">Enter Country Here: </label>
+        <input id="country" type="text" name="country" placeholder="Enter Country Here">
       </div>
-    </div>
-    <div class="items" id="submit">
-      <input type="submit" name="submit" value="submit" onclick="return Client.handleSubmit(event)"
-        onsubmit="return Client.handleSubmit(event)">
-    </div>
-    <div class="holder items" id="entry" >
-      <div class="photoContainer">
-        <div id="locationPhoto"><img src="./../media/sample.jpg" alt="The country picture" title="the country"></div>
-        <div id="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. In a atque asperiores magnam
-          laborum. Ullam omnis earum, hic quod molestias voluptas asperiores eum perferendis odio, id, repellendus
-          cupiditate fuga molestiae?</div>
+      <div class="holder" id="date">
+        <label for="date">Enter leaving and arriving date</label>
+        <div class="dateContainer">
+          <label for="leave">Leaving Date:
+            <input class="dateMargin" type="date" name="leave" id="leave">
+          </label>
+          <label for="arrive">Arriving date
+            <input class="dateMargin" type="date" name="arrive" id="arrive">
+          </label>
+        </div>
       </div>
-      <div id="dateContainer">
-        <div id="daysLeft">20/10/2020</div>
-        <div id="dateArrive">30/10/2020</div>
-        <div id="dateCountDown">220</div>
+      <div id="submit">
+        <input type="submit" name="submit" value="submit" onclick="return Client.handleSubmit(event)"
+          onsubmit="return Client.handleSubmit(event)">
+      </div>
+    </form>
+    <div class="holder" id="infoContainer">
+      <div id="locationPhoto">
+        <!-- <img src="./../media/sample.jpg" alt="The country picture" title="the country"> -->
+      </div>
+      <div id="timeContainer">
+        <div id="daysLeft"></div>
+        <div id="dateArrive"></div>
+        <div id="dateCountDown"></div>
       </div>
     </div>
   </main>
