@@ -4,19 +4,127 @@ $boxShadow: -1px 2px 5px 0px gray;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
 }
 body {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    background-image: linear-gradient(100deg, rgba(253, 221, 179, 0.5), rgba(250, 206, 149, 0.795)),
-        url("./../media/background-texture.jpg");
+    background-image: linear-gradient(90deg, #3a1c7180, #d76d7780, #ffaf7b80), url("./../media/background-texture.jpg");
     background-size: cover;
+    height: auto;
+}
+#headline {
+    text-align: center;
+    font-weight: bold;
+    font-size: 27px;
+    margin: 5px 0 20px 0;
+    @include large{
+        font-size:35px;
+    }
+    @include medium{
+        font-size: 35px;
+    }
 }
 
 #container {
     font-family: "Oswald", sans-serif;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include large {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: stretch;
+    }
+}
+#country{
+    margin-top: 10px;
+}
+#date{
+    line-height: 35px;
+    @include medium{
+        line-height: 60px;
+    }
+}
+.holder {
+    margin-bottom: 35px;
+    width:fit-content;
+}
+#formContainer {
+    @include columnFlex;
+    height: auto;
+    width: fit-content;
+    background-color: #d76d784b;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    box-shadow: $boxShadow;
+    @include large{
+        line-height: 80px;
+        width: 45%;
+        margin:15px 10px 10px 10px;
+         justify-content: space-evenly;
+    }
+    @include medium{
+    line-height: 70px;
+    width: 70%;
+    font-size: 35px;
+    }
+}
+#dateEntry {
+    margin-bottom: 7px;
+}
+#leave {
+    margin-bottom: 10px;
+}
+#dateContainer {
+    @include columnFlex;
+}
+.inputStyle {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.548);
+    box-shadow: $boxShadow;
+    padding: 2.5px 0 2.5px 10px;
+}
+#infoContainer {
+    height: auto;
+    @include large{
+        width: 45%;
+    }@include medium{
+        width: 80%;
+    }
 }
 
+#locationPhoto {
+    padding: 15px;
+    margin-bottom: 10px;
+    img {
+        width:100%;
+        border-radius: 20px;
+        box-shadow: $boxShadow;
+    }
+}
+#timeContainer{
+    width:fit-content;
+    margin: auto;
+}
+
+#submit {
+    input {
+        box-shadow: $boxShadow;
+        background-color: #d76d7880;
+        padding: 5px 35px;
+        margin-bottom: 20px;
+        font-size: 16px;
+
+        &:hover{
+            backdrop-filter: blur(2px);
+            background: linear-gradient(90deg,#3a1c71,#ffb07b91);
+            transition: 0.25s;
+            color: white;
+        }
+    }
+}
 /*  Basic Styling To Override Default For Basic HTML Elements */
 
 input {

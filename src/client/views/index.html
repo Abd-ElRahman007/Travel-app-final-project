@@ -12,7 +12,7 @@
     }
    </script> -->
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel App</title>
   <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
 </head>
@@ -28,16 +28,16 @@
     <form id="formContainer">
       <div class="holder" id="country">
         <label for="country">Enter Country Here: </label>
-        <input id="country" type="text" name="country" placeholder="Enter Country Here">
+        <input class="inputStyle" id="country" type="text" name="country" placeholder="Enter Country Here">
       </div>
       <div class="holder" id="date">
-        <label for="date">Enter leaving and arriving date</label>
-        <div class="dateContainer">
+        <h2 id="dateEntry">Enter Leaving and Arriving Date:</h2>
+        <div id="dateContainer">
           <label for="leave">Leaving Date:
-            <input class="dateMargin" type="date" name="leave" id="leave">
+            <input class="inputStyle" type="date" name="leave" id="leave">
           </label>
-          <label for="arrive">Arriving date
-            <input class="dateMargin" type="date" name="arrive" id="arrive">
+          <label for="arrive">Arriving Date:
+            <input class="inputStyle" type="date" name="arrive" id="arrive">
           </label>
         </div>
       </div>
@@ -47,13 +47,13 @@
       </div>
     </form>
     <div class="holder" id="infoContainer">
-      <div id="locationPhoto">
-        <!-- <img src="./../media/sample.jpg" alt="The country picture" title="the country"> -->
-      </div>
+      <figure id="locationPhoto">
+        <img src="./../media/sample.jpg" alt="The country picture" title="the country">
+      </figure>
       <div id="timeContainer">
-        <div id="daysLeft"></div>
-        <div id="dateArrive"></div>
-        <div id="dateCountDown"></div>
+        <div id="daysLeft">2020/10/10</div>
+        <div id="dateArrive">2020/10/10</div>
+        <div id="dateCountDown">220</div>
       </div>
     </div>
   </main>
