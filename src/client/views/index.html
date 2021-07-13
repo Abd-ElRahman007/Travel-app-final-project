@@ -26,18 +26,18 @@
   </header>
   <main id="container">
     <form id="formContainer">
-      <div class="holder" id="country">
+      <div class="holder" id="countryContainer">
         <label for="country">Enter Country Here: </label>
-        <input class="inputStyle" id="country" type="text" name="country" placeholder="Enter Country Here">
+        <input class="inputStyle" id="country" type="text" name="country" placeholder="Enter Country Here" required>
       </div>
       <div class="holder" id="date">
         <h2 id="dateEntry">Enter Leaving and Arriving Date:</h2>
         <div id="dateContainer">
           <label for="leave">Leaving Date:
-            <input class="inputStyle" type="date" name="leave" id="leave">
+            <input class="inputStyle" type="date" name="leave" id="leave" required>
           </label>
           <label for="arrive">Arriving Date:
-            <input class="inputStyle" type="date" name="arrive" id="arrive">
+            <input class="inputStyle" type="date" name="arrive" id="arrive" required>
           </label>
         </div>
       </div>
@@ -47,14 +47,44 @@
       </div>
     </form>
     <div class="holder" id="infoContainer">
-      <figure id="locationPhoto">
-        <img src="./../media/sample.jpg" alt="The country picture" title="the country">
+      <figure id="photoContainer">
+        <img id="img" src="" alt="The country picture" title="the country">
+        <figcaption id="photoCaption"></figcaption>
       </figure>
-      <div id="timeContainer">
-        <div id="daysLeft">2020/10/10</div>
-        <div id="dateArrive">2020/10/10</div>
-        <div id="dateCountDown">220</div>
-      </div>
+      <table id="dataContainer">
+        <tr>
+          <th>Longitude</th>
+          <th id="longitude"></th>
+        </tr>
+        <tr>
+          <th>latitude</th>
+          <th id="latitude"></th>
+        </tr>
+        <tr>
+          <th>Current Weather</th>
+          <th id="currentWeather"></th>
+        </tr>
+        <tr>
+          <th>Leaving Weather</th>
+          <th id="leavingWeather"></th>
+        </tr>
+        <tr>
+          <th>Arriving Weather</th>
+          <th id="arrivingWeather"></th>
+        </tr>
+        <tr>
+          <th>Leaving Date</th>
+          <th id="leavingDate"></th>
+        </tr>
+        <tr>
+          <th>Arriving Date</th>
+          <th id="arrivingDate"></th>
+        </tr>
+        <tr>
+          <th>Days Left</th>
+          <th id="daysLeft"></th>
+        </tr>
+      </table>
     </div>
   </main>
 
