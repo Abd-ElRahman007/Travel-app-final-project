@@ -27,24 +27,20 @@ async function handleSubmit(event) {
             console.log(error);
         }
     };
-    const dataGeo = await postInfo('http://localhost:8000/getGeo', { data: { country: countryName } });
-    const dataBitCurrent = await postInfo('http://localhost:8000/getBitWeather', { data: { long: dataGeo.geoData.longi, lat: dataGeo.geoData.lati } });
-    const dataBitForcast = await postInfo('http://localhost:8000/getBitWeatherForcast', { data: { long: dataGeo.geoData.longi, lat: dataGeo.geoData.lati, dateleave: dateLeave, datearrive: dateArrive } });
-    const pixabayData = await postInfo('http://localhost:8000/getPhoto', { data: { location: countryName } });
-    document.getElementById('img').setAttribute('src', pixabayData.photoApiData.photo);
-    document.getElementById('photoCaption').innerHTML = dataGeo.geoData.name;
-    document.getElementById('longitude').innerHTML = dataGeo.geoData.longi;
-    document.getElementById('latitude').innerHTML = dataGeo.geoData.lati;
-    document.getElementById('currentWeather').innerHTML = dataBitCurrent.bitCurrentData.weather;
-    document.getElementById('leavingWeather').innerHTML = dataBitForcast.bitForcastData.weatherleave;
-    document.getElementById('arrivingWeather').innerHTML = dataBitForcast.bitForcastData.weatherarrive;
+    const dataGeo = await postInfo('http://localhost:8000/getGeo', { "data": { "country": countryName } });
+    const dataBitCurrent = await postInfo('http://localhost:8000/getBitWeather', { "data": { "long": dataGeo.longi, "lat": dataGeo.lati } });
+    const dataBitForcast = await postInfo('http://localhost:8000/getBitWeatherForcast', { "data": { "long": dataGeo.longi, "lat": dataGeo.lati, "dateleave": dateLeave, "datearrive": dateArrive } });
+    const pixabayData = await postInfo('http://localhost:8000/getPhoto', { "data": { "location": countryName } });
+    //document.getElementById('img').setAttribute('src', pixabayData.total);
+    document.getElementById('photoCaption').innerHTML = dataGeo.name;
+    document.getElementById('longitude').innerHTML = dataGeo.longi;
+    document.getElementById('latitude').innerHTML = dataGeo.lati;
+    document.getElementById('currentWeather').innerHTML = dataBitCurrent.weather;
+    document.getElementById('leavingWeather').innerHTML = dataBitForcast.weatherleave;
+    document.getElementById('arrivingWeather').innerHTML = dataBitForcast.weatherarrive;
     document.getElementById('leavingDate').innerHTML = dateLeave;
     document.getElementById('arrivingDate').innerHTML = dateArrive;
-    const currentDate = newDate;
-    const leavingday = data.data.dateleave;
-    const sub = Math.abs(currentDate - leavingday);
-    days = sub / (1000 * 3600 * 24);
-    document.getElementById('daysLeft').innerHTML = days;
+	//document.getElementById('daysLeft').innerHTML = pixabayData.total;
     document.getElementById('infoContainer').classList.remove('hide');
 
 }

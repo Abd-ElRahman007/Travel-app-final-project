@@ -37,17 +37,16 @@ app.get('/', function (req, res) {
 });
 
 app.post('/getGeo', async function (req, res) {
-    const countryTitle= req.body.data.country;
-    const geoKey= process.env.API_GEONAMES;
-    const geoUrl= `http://api.geonames.org/searchJSON?q=${countryTitle}&maxRows=1&username=${geoKey}`;
-    console.log(data);
+    const countryTitle = req.body.data.country;
+    const geoKey = process.env.API_GEONAMES;
+    const geoUrl = `http://api.geonames.org/searchJSON?q=${countryTitle}&maxRows=1&username=${geoKey}`;
     const geoApi = await fetch(geoUrl);
     try {
         const jsonGeoApi = await geoApi.json();
         const geoData = {
-            longi: jsonGeoApi.geonames[0].lng,
-            lati: jsonGeoApi.geonames[0].lat,
-            name: jsonGeoApi.geonames[0].toponymName
+            "longi": jsonGeoApi.geonames[0].lng,
+            "lati": jsonGeoApi.geonames[0].lat,
+            "name": jsonGeoApi.geonames[0].toponymName
         };
         console.log(geoData);
         res.send(geoData);
@@ -66,7 +65,7 @@ app.post('/getBitWeather', async function (req, res) {
     try {
         const jsonBitCurrent = await bitCurrent.json();
         const bitCurrentData = {
-            weather: jsonBitCurrent.data[0].temp
+            "weather": jsonBitCurrent.data[0].temp
         };
         console.log(bitCurrentData);
         res.send(bitCurrentData);
@@ -76,56 +75,41 @@ app.post('/getBitWeather', async function (req, res) {
 });
 app.post('/getBitWeatherForcast', async function (req, res) {
     const coordinate = {
-        long: req.body.data.long,
-        lat: req.body.data.lat,
-        leave: req.body.data.dateleave,
-        arrive:req.body.data.datearrive
+        "long": req.body.data.long,
+        "lat": req.body.data.lat,
+        "leave": req.body.data.dateleave,
+        "arrive": req.body.data.datearrive
     };
+	console.log(coordinate);
     const bitweatherForcastkey = process.env.API_WEATHERBIT;
     const bitforcastUrl = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${coordinate.lat}&lon=${coordinate.long}&key=${bitweatherForcastkey}`;
     const bitForcast = await fetch(bitforcastUrl);
     try {
         const jsonBitForcast = await bitForcast.json();
         const bitForcastData = {
-            weatherleave: '',
-            weatherarrive:''
-        };
-        for (const time of jsonBitForcast.data) {
-            if (time.valid_date == coordinate.dateleave) {
-                bitForcastData.weatherleave = jsonBitForcast.temp;
-            }
-            if (time.valid_date == coordinate.datearrive) {
-                bitForcastData.weatherarrive = jsonBitForcast.temp;
-            }
-        }
+			"weatherleave":jsonBitForcast.data[0].temp,
+			"weatherarrive":jsonBitForcast.data[2].temp
+		};
+        
         console.log(bitForcastData);
         res.send(bitForcastData);
     } catch (error) {
-        console.log('error',error);
+        console.log('error', error);
     }
 });
 app.post('/getPhoto', async function (req, res) {
-    const location = req.body.data.location;
-    const pixabayKey = process.env.API_PIXABAY;
-    const pixabayUrl = "https://pixabay.com/api/?key=" + pixabayKey + "&q=" + encodeURIComponent(location) + "&category=travel&pretty=true&image_type=photo&orientation=horizontal";
-
-
-    const photoApi = await fetch(pixabayUrl);
-    try {
-        const jsonPhotoApi = photoApi.json();
-        const photoApiData = {
-            photo: ''
-        };
-        if (jsonPhotoApi.totalHits <= 0) {
-            console.log('no Hits');
-        } else {
-            photoApiData.photo = hits[0].largeImageURL;
-        }
-        console.log(photoApiData);
-        res.send(photoApiData);
-    } catch (error) {
-console.log('error',error);
-    }
+	const location ={
+		"location":req.body.data.location,
+		"pixabayKey":process.env.API_PIXABAY
+	};
+	console.log(location);
+	const pixabayUrl=`https://pixabay.com/api/?key=${location.pixabayKey}&q=${location.location}&pretty=true&category=travel&orientation=horizontal&image_type=photo`;
+	const pixabayData=await fetch(pixabayUrl);
+	console.log(pixabayData.url);
+	
+	//try{
+		
+//	}catch(error){}
 });
 
 
