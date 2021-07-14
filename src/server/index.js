@@ -104,14 +104,7 @@ app.post('/getPhoto', async function (req, res) {
     };
     console.log(location);
     const pixabayUrl = `https://pixabay.com/api/?key=${location.pixabayKey}&q=${location.location}&pretty=true&category=travel&orientation=horizontal&image_type=photo`;
-    let pixabayData;
     try {
-        const n = pixabayData.getJSON(pixabayUrl, function (data) {
-            if (parseInt(data.totalHits) > 0)
-                pixabayData.each(data.hits, function (i, hit) { console.log(hit.pageURL); });
-            else
-                console.log('No hits');
-        });
         console.log("pixabayPhoto", n);
         res.send(n);
     } catch (error) {

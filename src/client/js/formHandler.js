@@ -40,7 +40,7 @@ async function handleSubmit(event) {
     document.getElementById('arrivingWeather').innerHTML = dataBitForcast.weatherarrive;
     document.getElementById('leavingDate').innerHTML = dateLeave;
     document.getElementById('arrivingDate').innerHTML = dateArrive;
-    document.getElementById('daysLeft').innerHTML = n.total;
+    //document.getElementById('daysLeft').innerHTML = n.total;
     document.getElementById('infoContainer').classList.remove('hide');
 
 }
