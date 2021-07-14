@@ -24,8 +24,8 @@
       Travel App
     </h1>
   </header>
-  <main id="container">
-    <form id="formContainer">
+  <main id="container" >
+    <form id="formContainer" class="" onsubmit=" return Client.handleSubmit(event)">
       <div class="holder" id="countryContainer">
         <label for="country">Enter Country Here: </label>
         <input class="inputStyle" id="country" type="text" name="country" placeholder="Enter Country Here" required>
@@ -42,8 +42,8 @@
         </div>
       </div>
       <div id="submit">
-        <input type="submit" name="submit" value="submit" onclick="return Client.handleSubmit(event)"
-          onsubmit="return Client.handleSubmit(event)">
+        <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
+          onsubmit="return handleSubmit(event)">
       </div>
     </form>
     <div class="holder" id="infoContainer">

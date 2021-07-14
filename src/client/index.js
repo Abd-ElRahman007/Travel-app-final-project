@@ -5,3 +5,5 @@ import './styles/media.scss';
 import './styles/style.scss';
 
 const imgTwo = require('./media/background-texture.jpg');
+
+export { handleSubmit };

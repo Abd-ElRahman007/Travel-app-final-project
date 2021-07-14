@@ -36,25 +36,12 @@ app.get('/', function (req, res) {
     //res.sendFile(path.resolve('src/client/views/index.html'));
 });
 
-app.post('getAll', async function (req, res) {
-    const data = {
-        'country': req.body.data.country,
-        'dateleave': req.body.data.dateleave,
-        'datearrive': req.body.data.datearrive
-    };
-    const keys = {
-        geo: process.env.API_GEONAMES,
-        bitweather: process.env.API_WEATHERBIT,
-        pixabay: process.env.API_PIXABAY
-    };
-    const urls = {
-        geo: `http://api.geonames.org/searchJSON?q=${data.country}&maxRows=1&username=${keys.geo}`,
-        bitweather: `https://api.weatherbit.io/v2.0/current?lat=${geoData.lati}&lon=${geoData.longi}&include=minutely&key=${keys.bitweather}`,
-        bitforcast: `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${geoData.lati}&lon=${geoData.longi}&key=${keys.bitweather}`,
-        pixabay: "https://pixabay.com/api/?key=" + keys.pixabay + "&q=" + encodeURIComponent(data.country) + "&category=travel&pretty=true&image_type=photo&orientation=horizontal"
-    };
+app.post('/getGeo', async function (req, res) {
+    const countryTitle= req.body.data.country;
+    const geoKey= process.env.API_GEONAMES;
+    const geoUrl= `http://api.geonames.org/searchJSON?q=${countryTitle}&maxRows=1&username=${geoKey}`;
     console.log(data);
-    const geoApi = await fetch(urls.geo);
+    const geoApi = await fetch(geoUrl);
     try {
         const jsonGeoApi = await geoApi.json();
         const geoData = {
@@ -63,11 +50,19 @@ app.post('getAll', async function (req, res) {
             name: jsonGeoApi.geonames[0].toponymName
         };
         console.log(geoData);
-        res.send(geoData.name);
+        res.send(geoData);
     } catch (error) {
         console.log('error', error);
     }
-    const bitCurrent = await fetch(urls.bitweather);
+});
+app.post('/getBitWeather', async function (req, res) {
+    const coordinates = {
+        long: req.body.data.long,
+        lat: req.body.data.lat
+    };
+    const bitweatherkey = process.env.API_WEATHERBIT;
+    const bitweatherUrl = `https://api.weatherbit.io/v2.0/current?lat=${coordinates.lat}&lon=${coordinates.long}&include=minutely&key=${bitweatherkey}`;
+    const bitCurrent = await fetch(bitweatherUrl);
     try {
         const jsonBitCurrent = await bitCurrent.json();
         const bitCurrentData = {
@@ -78,7 +73,17 @@ app.post('getAll', async function (req, res) {
     } catch (error) {
         console.log('error', error);
     }
-    const bitForcast = await fetch(urls.bitforcast);
+});
+app.post('/getBitWeatherForcast', async function (req, res) {
+    const coordinate = {
+        long: req.body.data.long,
+        lat: req.body.data.lat,
+        leave: req.body.data.dateleave,
+        arrive:req.body.data.datearrive
+    };
+    const bitweatherForcastkey = process.env.API_WEATHERBIT;
+    const bitforcastUrl = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${coordinate.lat}&lon=${coordinate.long}&key=${bitweatherForcastkey}`;
+    const bitForcast = await fetch(bitforcastUrl);
     try {
         const jsonBitForcast = await bitForcast.json();
         const bitForcastData = {
@@ -86,10 +91,10 @@ app.post('getAll', async function (req, res) {
             weatherarrive:''
         };
         for (const time of jsonBitForcast.data) {
-            if (time.valid_date == data.dateleave) {
+            if (time.valid_date == coordinate.dateleave) {
                 bitForcastData.weatherleave = jsonBitForcast.temp;
             }
-            if (time.valid_date == data.datearrive) {
+            if (time.valid_date == coordinate.datearrive) {
                 bitForcastData.weatherarrive = jsonBitForcast.temp;
             }
         }
@@ -98,7 +103,14 @@ app.post('getAll', async function (req, res) {
     } catch (error) {
         console.log('error',error);
     }
-    const photoApi = await fetch(urls.pixabay);
+});
+app.post('/getPhoto', async function (req, res) {
+    const location = req.body.data.location;
+    const pixabayKey = process.env.API_PIXABAY;
+    const pixabayUrl = "https://pixabay.com/api/?key=" + pixabayKey + "&q=" + encodeURIComponent(location) + "&category=travel&pretty=true&image_type=photo&orientation=horizontal";
+
+
+    const photoApi = await fetch(pixabayUrl);
     try {
         const jsonPhotoApi = photoApi.json();
         const photoApiData = {
@@ -115,6 +127,7 @@ app.post('getAll', async function (req, res) {
 console.log('error',error);
     }
 });
+
 
 
 // Setup Server
