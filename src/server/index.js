@@ -80,17 +80,17 @@ app.post('/getBitWeatherForcast', async function (req, res) {
         "leave": req.body.data.dateleave,
         "arrive": req.body.data.datearrive
     };
-	console.log(coordinate);
+    console.log(coordinate);
     const bitweatherForcastkey = process.env.API_WEATHERBIT;
     const bitforcastUrl = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${coordinate.lat}&lon=${coordinate.long}&key=${bitweatherForcastkey}`;
     const bitForcast = await fetch(bitforcastUrl);
     try {
         const jsonBitForcast = await bitForcast.json();
         const bitForcastData = {
-			"weatherleave":jsonBitForcast.data[0].temp,
-			"weatherarrive":jsonBitForcast.data[2].temp
-		};
-        
+            "weatherleave": jsonBitForcast.data[0].temp,
+            "weatherarrive": jsonBitForcast.data[2].temp
+        };
+
         console.log(bitForcastData);
         res.send(bitForcastData);
     } catch (error) {
@@ -98,18 +98,25 @@ app.post('/getBitWeatherForcast', async function (req, res) {
     }
 });
 app.post('/getPhoto', async function (req, res) {
-	const location ={
-		"location":req.body.data.location,
-		"pixabayKey":process.env.API_PIXABAY
-	};
-	console.log(location);
-	const pixabayUrl=`https://pixabay.com/api/?key=${location.pixabayKey}&q=${location.location}&pretty=true&category=travel&orientation=horizontal&image_type=photo`;
-	const pixabayData=await fetch(pixabayUrl);
-	console.log(pixabayData.url);
-	
-	//try{
-		
-//	}catch(error){}
+    const location = {
+        "location": req.body.data.location,
+        "pixabayKey": process.env.API_PIXABAY
+    };
+    console.log(location);
+    const pixabayUrl = `https://pixabay.com/api/?key=${location.pixabayKey}&q=${location.location}&pretty=true&category=travel&orientation=horizontal&image_type=photo`;
+    let pixabayData;
+    try {
+        const n = pixabayData.getJSON(pixabayUrl, function (data) {
+            if (parseInt(data.totalHits) > 0)
+                pixabayData.each(data.hits, function (i, hit) { console.log(hit.pageURL); });
+            else
+                console.log('No hits');
+        });
+        console.log("pixabayPhoto", n);
+        res.send(n);
+    } catch (error) {
+        console.log("error", error);
+    }
 });
 
 
