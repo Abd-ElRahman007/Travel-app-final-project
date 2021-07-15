@@ -4,13 +4,13 @@
 <head>
   <script>
     // Check that service workers are supported
-    if ('serviceWorker' in navigator) {
-        // Use the window load event to keep the page load performant
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/service-worker.js');
-        });
-    }
-   </script> 
+    // if ('serviceWorker' in navigator) {
+    //     // Use the window load event to keep the page load performant
+    //     window.addEventListener('load', () => {
+    //         navigator.serviceWorker.register('/service-worker.js');
+    //     });
+    // }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel App</title>
@@ -24,7 +24,7 @@
       Travel App
     </h1>
   </header>
-  <main id="container" >
+  <main id="container">
     <form id="formContainer" class="" onsubmit=" return Client.handleSubmit(event)">
       <div class="holder" id="countryContainer">
         <label for="country">Enter Country Here: </label>
