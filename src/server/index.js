@@ -86,11 +86,15 @@ app.post('/getBitWeatherForcast', async function (req, res) {
     const bitForcast = await fetch(bitforcastUrl);
     try {
         const jsonBitForcast = await bitForcast.json();
-        const bitForcastData = {
-            "weatherleave": jsonBitForcast.data[0].temp,
-            "weatherarrive": jsonBitForcast.data[2].temp
-        };
-
+        let bitForcastData = {};
+        for (const time of jsonBitForcast.data) {
+            if (time.valid_date == coordinate.leave) {
+                bitForcastData.weatherleave = time.temp;
+            }
+            if (time.valid_date == coordinate.arrive) {
+                bitForcastData.weatherarrive = time.temp;
+            }
+        }
         console.log(bitForcastData);
         res.send(bitForcastData);
     } catch (error) {
@@ -102,12 +106,10 @@ app.post('/getPhoto', async function (req, res) {
         "location": req.body.data.location,
         "pixabayKey": process.env.API_PIXABAY
     };
-    console.log(location);
-    const pixabayUrl = `https://pixabay.com/api/?key=${location.pixabayKey}&q=${location.location}&pretty=true&category=travel&orientation=horizontal&image_type=photo`;
+    const pixabayUrl = `https://pixabay.com/api/?key=${location.pixabayKey}&q=${location.location}&pretty=true&image_type=photo`;
     const pixabayData = await fetch(pixabayUrl);
     try {
         const jsonPixabay = await pixabayData.json();
-        console.log("jsonPixabay", jsonPixabay);
         const photoApi = {
             "photo": jsonPixabay.hits[0].largeImageURL
         };

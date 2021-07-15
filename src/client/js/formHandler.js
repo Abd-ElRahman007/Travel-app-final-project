@@ -1,13 +1,12 @@
-/* Global Variables */
+
 
 // Create a new date instance dynamically with JS
-let d = new Date();
-let newDate = d.getFullYear() + '/' + d.getMonth() + 1 + '/' + d.getDate();
 
 async function handleSubmit(event) {
     event.preventDefault();
-
-    document.getElementById('infoContainer').classList.add('hide');
+    document.getElementById('hider').addEventListener('click', () => {
+        document.getElementById('infoContainer').classList.add('hide');
+    });
     //check the country name
     let countryName = document.getElementById('country').value;
     let dateLeave = document.getElementById('leave').value;
@@ -40,7 +39,17 @@ async function handleSubmit(event) {
     document.getElementById('arrivingWeather').innerHTML = dataBitForcast.weatherarrive;
     document.getElementById('leavingDate').innerHTML = dateLeave;
     document.getElementById('arrivingDate').innerHTML = dateArrive;
-    //document.getElementById('daysLeft').innerHTML = ;
+    const today = new Date();
+    let dateleft = today.getMonth() + 1 + '-' + today.getDate() + '-' + today.getFullYear();
+    let leave = dateLeave;
+    getCountDown();
+    function getCountDown(dateleft, leave) {
+        let sub = (leave - dateleft) / 1000;
+        sub = Math.abs(Math.floor(sub));
+        let days = Math.floor(sub / (24 * 60 * 60));
+        document.getElementById('daysLeft').innerHTML = days;
+        console.log(sub, days);
+    }
     document.getElementById('infoContainer').classList.remove('hide');
 
 }
