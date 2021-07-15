@@ -105,12 +105,11 @@ app.post('/getPhoto', async function (req, res) {
     console.log(location);
     const pixabayUrl = `https://pixabay.com/api/?key=${location.pixabayKey}&q=${location.location}&pretty=true&category=travel&orientation=horizontal&image_type=photo`;
     const pixabayData = await fetch(pixabayUrl);
-    console.log("pixabayData", pixabayData);
     try {
         const jsonPixabay = await pixabayData.json();
         console.log("jsonPixabay", jsonPixabay);
         const photoApi = {
-            "photo": jsonPixabay.total
+            "photo": jsonPixabay.hits[0].largeImageURL
         };
         console.log("pixabayPhoto", photoApi);
         res.send(photoApi);

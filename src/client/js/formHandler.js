@@ -31,7 +31,7 @@ async function handleSubmit(event) {
     const dataBitCurrent = await postInfo('http://localhost:8000/getBitWeather', { "data": { "long": dataGeo.longi, "lat": dataGeo.lati } });
     const dataBitForcast = await postInfo('http://localhost:8000/getBitWeatherForcast', { "data": { "long": dataGeo.longi, "lat": dataGeo.lati, "dateleave": dateLeave, "datearrive": dateArrive } });
     const pixabayData = await postInfo('http://localhost:8000/getPhoto', { "data": { "location": countryName } });
-    //document.getElementById('img').setAttribute('src', pixabayData.total);
+    document.getElementById('img').setAttribute('src', pixabayData.photo);
     document.getElementById('photoCaption').innerHTML = dataGeo.name;
     document.getElementById('longitude').innerHTML = dataGeo.longi;
     document.getElementById('latitude').innerHTML = dataGeo.lati;
@@ -40,7 +40,7 @@ async function handleSubmit(event) {
     document.getElementById('arrivingWeather').innerHTML = dataBitForcast.weatherarrive;
     document.getElementById('leavingDate').innerHTML = dateLeave;
     document.getElementById('arrivingDate').innerHTML = dateArrive;
-    document.getElementById('daysLeft').innerHTML = pixabayData.photo;
+    //document.getElementById('daysLeft').innerHTML = ;
     document.getElementById('infoContainer').classList.remove('hide');
 
 }
