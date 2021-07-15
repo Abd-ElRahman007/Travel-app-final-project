@@ -34,17 +34,20 @@ async function handleSubmit(event) {
     document.getElementById('photoCaption').innerHTML = dataGeo.name;
     document.getElementById('longitude').innerHTML = dataGeo.longi;
     document.getElementById('latitude').innerHTML = dataGeo.lati;
-    document.getElementById('currentWeather').innerHTML = dataBitCurrent.weather;
-    document.getElementById('leavingWeather').innerHTML = dataBitForcast.weatherleave;
-    document.getElementById('arrivingWeather').innerHTML = dataBitForcast.weatherarrive;
+    document.getElementById('currentWeather').innerHTML = dataBitCurrent.weather+"C&deg;";
+    document.getElementById('leavingWeather').innerHTML = dataBitForcast.weatherleave+"C&deg;";
+    document.getElementById('arrivingWeather').innerHTML = dataBitForcast.weatherarrive+"C&deg;";
     document.getElementById('leavingDate').innerHTML = dateLeave;
     document.getElementById('arrivingDate').innerHTML = dateArrive;
     const today = new Date();
     let dateleft = today.getMonth() + 1 + '-' + today.getDate() + '-' + today.getFullYear();
     let leave = dateLeave;
     getCountDown();
-    function getCountDown(dateleft, leave) {
-        let sub = (leave - dateleft) / 1000;
+    function getCountDown() {
+        let leftDate = new Date(leave);
+        let now = new Date(dateleft);
+        console.log(leftDate, now);
+        let sub = (leftDate.getTime() - now.getTime()) / 1000;
         sub = Math.abs(Math.floor(sub));
         let days = Math.floor(sub / (24 * 60 * 60));
         document.getElementById('daysLeft').innerHTML = days;
