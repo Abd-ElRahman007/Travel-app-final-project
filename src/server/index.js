@@ -1,9 +1,3 @@
-// $.getJSON(pixabay, function(data){
-// if (parseInt(data.totalHits) > 0)
-//     $.each(data.hits, function(i, hit){ console.log(hit.pageURL); });
-// else
-//     console.log('No hits');
-// });
 
 var path = require('path');
 
