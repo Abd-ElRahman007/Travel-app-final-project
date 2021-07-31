@@ -31,7 +31,7 @@ app.get('/', function (req, res) {
 
 app.post('/getGeo', async function (req, res) {
     const countryTitle = req.body.data.country;
-    const geoKey = 'body';
+    const geoKey = process.env.API_GEONAMES;
     const geoUrl = `http://api.geonames.org/searchJSON?q=${countryTitle}&maxRows=1&username=${geoKey}`;
     const geoApi = await fetch(geoUrl);
     try {
@@ -52,7 +52,7 @@ app.post('/getBitWeather', async function (req, res) {
         long: req.body.data.long,
         lat: req.body.data.lat
     };
-    const bitweatherkey = '6c1531c89d134b209448138bbd41851f';
+    const bitweatherkey = process.env.API_WEATHERBIT;
     const bitweatherUrl = `https://api.weatherbit.io/v2.0/current?lat=${coordinates.lat}&lon=${coordinates.long}&include=minutely&key=${bitweatherkey}`;
     const bitCurrent = await fetch(bitweatherUrl);
     try {
@@ -74,7 +74,7 @@ app.post('/getBitWeatherForcast', async function (req, res) {
         "arrive": req.body.data.datearrive
     };
     console.log(coordinate);
-    const bitweatherForcastkey = '6c1531c89d134b209448138bbd41851f';
+    const bitweatherForcastkey = process.env.API_WEATHERBIT;
     const bitforcastUrl = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${coordinate.lat}&lon=${coordinate.long}&key=${bitweatherForcastkey}`;
     const bitForcast = await fetch(bitforcastUrl);
     try {
@@ -97,7 +97,7 @@ app.post('/getBitWeatherForcast', async function (req, res) {
 app.post('/getPhoto', async function (req, res) {
     const location = {
         "location": req.body.data.location,
-        "pixabayKey": '22483052-93f6eb080d65d0a3d77841032'
+        "pixabayKey": process.env.API_PIXABAY
     };
     const pixabayUrl = `https://pixabay.com/api/?key=${location.pixabayKey}&q=${location.location}&pretty=true&image_type=photo`;
     const pixabayData = await fetch(pixabayUrl);
