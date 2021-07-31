@@ -34,9 +34,9 @@ async function handleSubmit(event) {
     document.getElementById('photoCaption').innerHTML = dataGeo.name;
     document.getElementById('longitude').innerHTML = dataGeo.longi;
     document.getElementById('latitude').innerHTML = dataGeo.lati;
-    document.getElementById('currentWeather').innerHTML = dataBitCurrent.weather + " C&deg;";
-    document.getElementById('leavingWeather').innerHTML = dataBitForcast.weatherleave + " C&deg;";
-    document.getElementById('arrivingWeather').innerHTML = dataBitForcast.weatherarrive + " C&deg;";
+    document.getElementById('currentWeather').innerHTML = dataBitCurrent.weather + " C&deg; / " + dataBitCurrent.weatherState;
+    document.getElementById('leavingWeather').innerHTML = dataBitForcast.weatherleave + " C&deg; / " + dataBitForcast.weatherleaveState;
+    document.getElementById('arrivingWeather').innerHTML = dataBitForcast.weatherarrive + " C&deg; / " + dataBitForcast.weatherarriveState;
     document.getElementById('leavingDate').innerHTML = dateLeave;
     document.getElementById('arrivingDate').innerHTML = dateArrive;
     const today = new Date();

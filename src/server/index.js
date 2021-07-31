@@ -58,7 +58,8 @@ app.post('/getBitWeather', async function (req, res) {
     try {
         const jsonBitCurrent = await bitCurrent.json();
         const bitCurrentData = {
-            "weather": jsonBitCurrent.data[0].temp
+            "weather": jsonBitCurrent.data[0].temp,
+            "weatherState": jsonBitCurrent.data[0].weather.description
         };
         console.log(bitCurrentData);
         res.send(bitCurrentData);
@@ -83,9 +84,11 @@ app.post('/getBitWeatherForcast', async function (req, res) {
         for (const time of jsonBitForcast.data) {
             if (time.valid_date == coordinate.leave) {
                 bitForcastData.weatherleave = time.temp;
+                bitForcastData.weatherleaveState = time.weather.description;
             }
             if (time.valid_date == coordinate.arrive) {
                 bitForcastData.weatherarrive = time.temp;
+                bitForcastData.weatherarriveState = time.weather.description;
             }
         }
         console.log(bitForcastData);
