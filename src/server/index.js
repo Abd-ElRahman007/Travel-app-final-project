@@ -102,7 +102,7 @@ app.post('/getPhoto', async function (req, res) {
         "location": req.body.data.location,
         "pixabayKey": process.env.API_PIXABAY
     };
-    const pixabayUrl = `https://pixabay.com/api/?key=${location.pixabayKey}&q=${location.location}&pretty=true&image_type=photo`;
+    const pixabayUrl = "https://pixabay.com/api/?key=" + location.pixabayKey + "&q=" + encodeURIComponent(location.location) + "&pretty=true&image_type=photo";
     const pixabayData = await fetch(pixabayUrl);
     try {
         const jsonPixabay = await pixabayData.json();
