@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "watch": "nodemon --watch ./dist --watch ./src/server/index.js",
+    "watch": "nodemon --watch ./dist src/server/index.js",
     "test": "jest",
     "start": "node src/server/index.js",
     "build-prod": "webpack --config webpack.prod.js",
